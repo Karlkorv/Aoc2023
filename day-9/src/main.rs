@@ -24,16 +24,40 @@ fn parse_input(input: &Vec<String>) -> Vec<Vec<i32>> {
     out
 }
 
+// part one
+// fn solve(input: &Vec<Vec<i32>>) -> i32 {
+//     let mut out = Vec::new();
+//     for line in input {
+//         out.push(line.last().unwrap() + get_next(line));
+//     }
+
+//     out.iter().sum()
+// }
+
+// fn get_next(input: &Vec<i32>) -> i32 {
+//     if input.iter().all(|&x| x == 0) {
+//         return 0;
+//     }
+
+//     let mut out = Vec::new();
+//     for i in 1..input.len() {
+//         let diff = input[i] - input[i - 1];
+//         out.push(diff);
+//     }
+
+//     return out.last().unwrap() + get_next(&out);
+// }
+
 fn solve(input: &Vec<Vec<i32>>) -> i32 {
     let mut out = Vec::new();
     for line in input {
-        out.push(line.last().unwrap() + get_next(line));
+        out.push(line.first().unwrap() - get_first(line));
     }
 
     out.iter().sum()
 }
 
-fn get_next(input: &Vec<i32>) -> i32 {
+fn get_first(input: &Vec<i32>) -> i32 {
     if input.iter().all(|&x| x == 0) {
         return 0;
     }
@@ -44,7 +68,7 @@ fn get_next(input: &Vec<i32>) -> i32 {
         out.push(diff);
     }
 
-    return out.last().unwrap() + get_next(&out);
+    return out.first().unwrap() - get_first(&out);
 }
 
 fn main() {
